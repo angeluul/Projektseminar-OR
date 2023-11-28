@@ -5,6 +5,43 @@ df = pd.read_csv('Beispieldaten_convertiert.csv')
 df = df[['TitlePlain','DeliveryContentsText','UserInstructions','SalesArgument']].dropna()
 df = df.reset_index()
 
+"String Manipulation"
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('<p>', '')
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('</p>', '')
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('<ul>', '')
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('<li>', '')
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('</li>', '')
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('</ul>', '')
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('<br>', '')
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('</br>', '')
+
+df['UserInstructions'] = df['UserInstructions'].str.replace('<p>', '')
+df['UserInstructions'] = df['UserInstructions'].str.replace('</p>', '')
+df['UserInstructions'] = df['UserInstructions'].str.replace('<h2>', '')
+df['UserInstructions'] = df['UserInstructions'].str.replace('</h2>', ': ')
+df['UserInstructions'] = df['UserInstructions'].str.replace('<ul>', '')
+df['UserInstructions'] = df['UserInstructions'].str.replace('</ul>', '')
+df['UserInstructions'] = df['UserInstructions'].str.replace('<li>', '')
+df['UserInstructions'] = df['UserInstructions'].str.replace('</li>', ' / ')
+df['UserInstructions'] = df['UserInstructions'].str[:-3]
+df['UserInstructions'] = df['UserInstructions'].str.replace('<br>', '')
+df['UserInstructions'] = df['UserInstructions'].str.replace('</br>', '')
+
+df['SalesArgument'] = df['SalesArgument'].str.replace('<p>', '')
+df['SalesArgument'] = df['SalesArgument'].str.replace('</p>', '')
+df['SalesArgument'] = df['SalesArgument'].str.replace('<ul>', '')
+df['SalesArgument'] = df['SalesArgument'].str.replace('</ul>', '')
+df['SalesArgument'] = df['SalesArgument'].str.replace('<li>', '')
+df['SalesArgument'] = df['SalesArgument'].str.replace('</li>', ' / ')
+df['SalesArgument'] = df['SalesArgument'].str[:-3]
+df['SalesArgument'] = df['SalesArgument'].str.replace('<br>', '')
+df['SalesArgument'] = df['SalesArgument'].str.replace('</br>', '')
+
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.strip()
+df['UserInstructions'] = df['UserInstructions'].str.strip()
+df['SalesArgument'] = df['SalesArgument'].str.strip()
+
+
 "with pd.option_context('display.max_rows', None, 'display.max_columns', None):"
 
 print(df.head())
