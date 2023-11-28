@@ -9,11 +9,13 @@ df = df.reset_index()
 df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('<p>', '')
 df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('</p>', '')
 df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('<ul>', '')
-df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('<li>', '')
-df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('</li>', '')
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('<li>', ' / ')  # Geändert
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('</li>', '')  # Geändert
 df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('</ul>', '')
 df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('<br>', '')
 df['DeliveryContentsText'] = df['DeliveryContentsText'].str.replace('</br>', '')
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str[3:]  # Entfernt das erste " / "
+df['DeliveryContentsText'] = df['DeliveryContentsText'].str.strip()
 
 df['UserInstructions'] = df['UserInstructions'].str.replace('<p>', '')
 df['UserInstructions'] = df['UserInstructions'].str.replace('</p>', '')
